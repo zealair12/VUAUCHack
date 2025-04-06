@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - Skin Disease Classifier</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6">
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Analysis Results</h1>
+            
+            {% if result == "Error" %}
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                    <strong class="font-bold">Error!</strong>
+                    <span class="block sm:inline">{{ detailed_analysis }}</span>
+                </div>
+            {% else %}
+                <div class="space-y-6">
+                    <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative">
+                        <h2 class="text-xl font-semibold mb-2">Classification Result</h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="font-semibold">Condition:</p>
+                                <p>{{ result }}</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Confidence:</p>
+                                <p>{{ "%.2f"|format(confidence) }}%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h2 class="text-xl font-semibold mb-2">Detailed Analysis</h2>
+                        <p class="whitespace-pre-line text-gray-700">{{ detailed_analysis }}</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h2 class="text-xl font-semibold mb-2">Recommendations</h2>
+                        <ul class="list-disc list-inside space-y-2">
+                            {% for recommendation in recommendations %}
+                                <li class="text-gray-700">{{ recommendation }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center text-sm text-gray-500">
+                    <p>Note: This analysis is for informational purposes only and should not be considered as medical advice. Please consult a healthcare professional for proper diagnosis and treatment.</p>
+                </div>
+            {% endif %}
+
+            <div class="mt-8 text-center">
+                <a href="/" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                    Analyze Another Image
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
+</html> 
